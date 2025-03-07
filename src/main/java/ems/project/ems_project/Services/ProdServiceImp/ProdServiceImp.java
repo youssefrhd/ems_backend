@@ -56,4 +56,5 @@ public class ProdServiceImp implements ProductService {
         Product updatedPrd=productRepository.save(product);
         return new ProductMapper().ProductToPDto(updatedPrd);
     }
+
 }

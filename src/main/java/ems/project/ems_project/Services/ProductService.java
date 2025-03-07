@@ -15,4 +15,6 @@ public interface ProductService {
     public ProductDto updateProduct(Long id,ProductDto productDto);
 
     public ProductDto updateName(Long id,String name);
+
+
 }

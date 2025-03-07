@@ -2,6 +2,8 @@ package ems.project.ems_project.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 @Data
@@ -25,7 +27,9 @@ public class Cart {
     @OneToOne
     private User user;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany
+    @JoinColumn(name = "cart_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<LineItem> lineItems;
 
 }

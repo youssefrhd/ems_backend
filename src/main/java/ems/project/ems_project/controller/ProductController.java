@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/products")
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductController {
     private ProductService productService;
     @PostMapping
@@ -51,6 +52,7 @@ public class ProductController {
         ProductDto updated=productService.updateName(id,newPname);
         return ResponseEntity.ok(updated);
     }
+
 
 
 }

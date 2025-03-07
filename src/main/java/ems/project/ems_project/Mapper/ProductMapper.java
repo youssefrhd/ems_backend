@@ -5,9 +5,9 @@ import ems.project.ems_project.Model.Product;
 
 public class ProductMapper {
     public ProductDto ProductToPDto(Product product){
-        return new ProductDto(product.getProduct_id(),product.getName(),product.getDescription(),product.getUnit_price(),product.getInStock(),product.getCategorie());
+        return new ProductDto(product.getProduct_id(),product.getName(),product.getDescription(),product.getUnit_price(),product.getInStock(),product.getCategorie(), product.getPhoto(), product.getDiscount());
     }
     public Product ProductDtoToProduct(ProductDto productDto){
-        return new Product(productDto.getProduct_id(),productDto.getName(),productDto.getDescription(),productDto.getUnit_price(),productDto.getInStock(),productDto.getCategorie());
+        return new Product(productDto.getProduct_id(),productDto.getName(),productDto.getDescription(),productDto.getUnit_price(),productDto.getInStock(),productDto.getPhoto(),productDto.getCategorie(),productDto.getDiscount());
     }
 }

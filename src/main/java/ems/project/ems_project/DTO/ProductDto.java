@@ -19,4 +19,6 @@ public class ProductDto {
     private double unit_price;
     private int inStock;
     private Categorie categorie;
+    private String photo;
+    private Integer discount;
 }

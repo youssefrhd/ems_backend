@@ -10,17 +10,16 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Data
 @Table(name = "product")
 
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long product_id;
     @Column(name="productname")
     private String name;
-    @Column(name = "description")
+    @Column(name = "description" )
     private String Description;
 
     @Column(name = "unit_price")
@@ -29,23 +28,35 @@ public class Product {
     private int inStock;
     @Column(name = "photo")
     private String photo;
+    @Column(name = "discount")
+    private Integer discount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Cart cart;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categorie categorie;
 
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     private List<LineItem> lineItems;
 
 
-    public Product(Long product_id, String name, String description, double unit_price, int inStock, Categorie categorie) {
+    public Product(Long product_id, String name, String description, double unit_price, int inStock, String photo,Categorie categorie ,int discount ) {
         this.product_id = product_id;
         this.name = name;
         Description = description;
         this.unit_price = unit_price;
         this.inStock = inStock;
         this.categorie = categorie;
+        this.photo=photo;
+        this.discount=discount;
+
+    }
+    public double getUpdatedPrice() {
+        if (this.discount != null) {
+            return unit_price - (unit_price * discount / 100.0);
+        } else {
+            return unit_price;  // Return the unit price if discount is not set
+        }
     }
 }

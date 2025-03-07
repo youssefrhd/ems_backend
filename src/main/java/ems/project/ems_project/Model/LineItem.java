@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,12 +20,22 @@ public class LineItem {
     private int quantity;
     @Column(name = "item_Tprice")
     private double item_Tprice;
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "product_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
     @ManyToOne
-    private LineItem lineItem;
-    @ManyToOne
     private Order order;
-    @ManyToOne
-    private Cart cart;
+
+    public LineItem(Long id, int quantity, double item_Tprice, Product product) {
+        this.id = id;
+        this.quantity = quantity;
+        this.item_Tprice = item_Tprice;
+        this.product = product;
+    }
+
+    public LineItem(int quantity, Product product) {
+        this.quantity = quantity;
+        this.product = product;
+    }
 }
